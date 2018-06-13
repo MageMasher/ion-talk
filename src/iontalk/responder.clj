@@ -49,13 +49,13 @@
 ;; respond multi-methods
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn respond-dispatch
-  [{:keys [To From Body] :as msg}]
+  [{:strs [To From Body] :as msg}]
   {:tags (set (hashtags Body))})
 
 (defmulti respond respond-dispatch)
 
 (defmethod respond {:tags #{"#apropos"}}
-  [{:keys [From Body db] :as context}]
+  [{:strs [From Body db] :as context}]
   (->> (some-body Body)
        (d/q
         '[:find ?text ?author
@@ -71,7 +71,7 @@
 
 
 (defmethod respond {:tags #{"#new-fortune"}}
-  [{:keys [From Body db] :as context}]
+  [{:strs [From Body db] :as context}]
   (d/q
    '[:find ?author (count ?text)
      :where
@@ -80,7 +80,7 @@
    db))
 
 (defmethod respond {:tags #{"#fortune"}}
-  [{:keys [db] :as context}]
+  [{:strs [db] :as context}]
   (->> (d/q
        '[:find  ?text ?author
          :where
@@ -91,7 +91,7 @@
       (str/join " -")))
 
 (defmethod respond {:tags #{"#fortune-teller"}}
-  [{:keys [db Body] :as context}]
+  [{:strs [db Body] :as context}]
   (->> (some-body Body)
        (d/q
         '[:find ?text ?author-result

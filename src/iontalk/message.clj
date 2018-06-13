@@ -22,8 +22,8 @@
 (defn handler*
   [params]
   (-> params
-      (assoc :conn (ion/get-connection)
-             :db (d/db (ion/get-connection)))
+      (assoc "conn" (ion/get-connection)
+             "db" (d/db (ion/get-connection)))
       responder/respond
       format-response))
 
