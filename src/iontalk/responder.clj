@@ -32,16 +32,18 @@
     (map (comp str/lower-case first) (re-seq hashtags-re s))))
 
 
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Query Functions
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 (defn author-match?
-  "Query ion exmaple. This predicate matches entities that
-should be featured in a promotion."
   [db e ?author]
   (let [{:keys [:fortune/author]} (d/pull db {:eid e :selector [:fortune/author]})]
     (= (str/lower-case author) (str/lower-case ?author))))
+
+(defn apropos?
+  [db e ?search]
+  (let [{:keys [:fortune/text]} (d/pull db {:eid e :selector [:fortune/text]})]
+    (boolean (str/includes? text ?search))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; respond multi-methods
@@ -52,15 +54,30 @@ should be featured in a promotion."
 
 (defmulti respond respond-dispatch)
 
+(defmethod respond {:tags #{"#apropos"}}
+  [{:keys [From Body db] :as context}]
+  (->> (some-body Body)
+       (d/q
+        '[:find ?text ?author
+          :in $ ?search
+          :where
+          [?e :fortune/author ?author]
+          [?e :fortune/text ?text]
+          [(= ?apropos true)]
+          [(iontalk.responder/apropos? $ ?e ?search) ?apropos]]
+        db)
+       (map #(->> % (str/join " -")))
+       (str/join ", ")))
+
 
 (defmethod respond {:tags #{"#new-fortune"}}
   [{:keys [From Body db] :as context}]
   (d/q
-       '[:find ?author (count ?text)
-         :where
-         [?e :fortune/author ?author]
-         [?e :fortune/text ?text]]
-       db))
+   '[:find ?author (count ?text)
+     :where
+     [?e :fortune/author ?author]
+     [?e :fortune/text ?text]]
+   db))
 
 (defmethod respond {:tags #{"#fortune"}}
   [{:keys [db] :as context}]
@@ -71,21 +88,22 @@ should be featured in a promotion."
          [?e :fortune/text ?text]]
        db)
       rand-nth
-      (str/join " -")
-      ))
+      (str/join " -")))
 
 (defmethod respond {:tags #{"#fortune-teller"}}
   [{:keys [db Body] :as context}]
-  (d/q
-       '[:find ?text ?author
-         :in $ ?author
-         :where
-         [?e :fortune/author ?author]
-         [?e :fortune/text ?text]
-         [(iontalk.responder/author-match? $ ?e ?author) match?]
-         [(= match? true)]]
-       db
-       (some-body Body)))
+  (->> (some-body Body)
+       (d/q
+        '[:find ?text ?author-result
+          :in $ ?author
+          :where
+          [?e :fortune/author ?author-result]
+          [?e :fortune/text ?text]
+          [(= ?match true)]
+          [(iontalk.responder/author-match? $ ?e ?author) ?match]]
+        db)
+       (rand-nth)
+       (str/join " -")))
 
 (defmethod respond :default [_]
   "Sorry friend, my silly bot brain can't understand this big big world.")

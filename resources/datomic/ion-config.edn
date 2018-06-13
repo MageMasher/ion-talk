@@ -3,6 +3,7 @@
 
   ;; query functions
   iontalk.responder/author-match?
+  iontalk.responder/apropos?
 
   ;; lambda handlers
   iontalk.message/handler
