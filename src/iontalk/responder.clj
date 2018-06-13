@@ -99,7 +99,7 @@
             [?e :fortune/author ?author]
             [?e :fortune/text ?text]]
           db)
-         rand-nth
+         #(first (shuffle (vec %)))
          (str/join " -"))))
 
 (defmethod respond {:tags #{"#fortune-teller"}}
@@ -119,8 +119,9 @@
                                [(iontalk.responder/author-match? $ ?e ?author) ?match]]
                              db))
         _ (println "Got Past teller-results:" (pr-str teller-results))
-        result (rand-nth teller-results)
-        _ (println "Got Past rand-nth:" (pr-str teller-results))]
+        
+        result (first (shuffle (vec teller-results)))
+        _ (println "Got Past rand-nth:" (pr-str result))]
     (str/join " -" result)))
 
 (defmethod respond :default [context]
