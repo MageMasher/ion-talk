@@ -6,6 +6,7 @@
    [iontalk.ion :as ion]
    [ring.util.response :as ring-resp]
    [ring.middleware.params :as ring-middleware]
+   [ring.middleware.keyword-params :as kw-middleware]
    [datomic.ion.lambda.api-gateway :as apigw]))
 
 
@@ -36,10 +37,10 @@
 (defn handler-web*
   [{:keys [params] :as req}]
   (-> (ring-resp/response
-       (handler* (clojure.walk/keywordize-keys params)))
+       (handler* params))
       (ring-resp/header "Content-Type" "text/xml; charset=utf-8")))
 
 
 (def handler-web
-  (apigw/ionize (-> handler-web* ring-middleware/wrap-params)))
+  (apigw/ionize (-> handler-web* ring-middleware/wrap-params kw-middleware/wrap-keyword-params)))
 
