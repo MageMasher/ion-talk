@@ -105,5 +105,5 @@
        (rand-nth)
        (str/join " -")))
 
-(defmethod respond :default [_]
-  "Sorry friend, my silly bot brain can't understand this big big world.")
+(defmethod respond :default [context]
+  (str "Sorry friend, my silly bot brain can't understand this big big world. Here is the context you sent me: " (pr-str context)))

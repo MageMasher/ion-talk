@@ -31,7 +31,6 @@
   [{:keys [input]}]
   (-> input
       (json/read-str :key-fn keyword)
-      :params
       handler*))
 
 (defn handler-web*
