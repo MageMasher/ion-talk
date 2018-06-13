@@ -30,7 +30,7 @@
 (defn handler
   [{:keys [input]}]
   (-> input
-      (json/read-str :key-fn keyword)
+      (json/read-str)
       handler*))
 
 (defn handler-web*
