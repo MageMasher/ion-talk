@@ -1,19 +1,30 @@
 (ns iontalk.message
   (:require
    [clojure.data.json :as json]
+   [iontalk.responder :as responder]
+   [datomic.client.api :as d]
+   [iontalk.ion :as ion]
    [ring.util.response :as ring-resp]
    [ring.middleware.params :as ring-middleware]
    [datomic.ion.lambda.api-gateway :as apigw]))
 
 
-(defn- handler*
-  [params]
+(defn format-response
+  [body]
   (str "<?xml version=\"1.0\" encoding=\"UTF-8\"?>
          <Response>
            <Message>
-             " params "
+             " body "
            </Message>
          </Response>"))
+
+(defn handler*
+  [params]
+  (-> params
+      (assoc :conn (ion/get-connection)
+             :db (d/db (ion/get-connection)))
+      responder/respond
+      format-response))
 
 (defn handler
   [{:keys [input]}]

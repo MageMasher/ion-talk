@@ -1,0 +1,75 @@
+[
+ {:fortune/text "The best way to predict the future is to invent it." :fortune/author "Alan Kay"}
+ {:fortune/text "A point of view is worth 80 IQ points. " :fortune/author "Alan Kay"}
+ {:fortune/text "Lisp isn't a language, it's a building material. " :fortune/author "Alan Kay"}
+ {:fortune/text "Simple things should be simple, complex things should be possible. " :fortune/author "Alan Kay"}
+ {:fortune/text "Everything should be as simple as possible, but not simpler. " :fortune/author "Albert Einstein"}
+ {:fortune/text "Measuring programming progress by lines of code is like measuring aircraft building progress by weight. " :fortune/author "Bill Gates"}
+ {:fortune/text "Controlling complexity is the essence of computer programming. " :fortune/author "Brian Kernighan"}
+ {:fortune/text "The unavoidable price of reliability is simplicity. " :fortune/author "C.A.R. Hoare"}
+ {:fortune/text "You're bound to be unhappy if you optimize everything. " :fortune/author "Donald Knuth"}
+ {:fortune/text "Simplicity is prerequisite for reliability. " :fortune/author "Edsger W. Dijkstra"}
+ {:fortune/text "Elegance is not a dispensable luxury but a quality that decides between success and failure. " :fortune/author "Edsger W. Dijkstra"}
+ {:fortune/text "Deleted code is debugged code. " :fortune/author "Jeff Sickel"}
+ {:fortune/text "The key to performance is elegance, not battalions of special cases. " :fortune/author "Jon Bentley and Doug McIlroy"}
+ {:fortune/text "First, solve the problem. Then, write the code. " :fortune/author "John Johnson"}
+ {:fortune/text "Simplicity is the ultimate sophistication. " :fortune/author "Leonardo da Vinci"}
+ {:fortune/text "Programming is not about typing... it's about thinking. " :fortune/author "Rich Hickey"}
+ {:fortune/text "Design is about pulling things apart. " :fortune/author "Rich Hickey"}
+ {:fortune/text "Programmers know the benefits of everything and the tradeoffs of nothing. " :fortune/author "Rich Hickey"}
+ {:fortune/text "Code never lies, comments sometimes do. " :fortune/author "Ron Jeffries"}
+ {:fortune/text "The true delight is in the finding out rather than in the knowing. " :fortune/author "Isaac Asimov"}
+ {:fortune/text "If paredit is not for you, then you need to become the sort of person that paredit is for. " :fortune/author "Phil Hagelberg"}
+ {:fortune/text "Express Yourself. " :fortune/author "Madonna"}
+ {:fortune/text "Put on your red shoes and dance the blues. " :fortune/author "David Bowie"}
+ {:fortune/text "Do. Or do not. There is no try. " :fortune/author "Yoda"}
+ {:fortune/text "The enjoyment of one's tools is an essential ingredient of successful work. " :fortune/author "Donald E. Knuth"}
+ {:fortune/text "Not all those who wander are lost. " :fortune/author "J.R.R. Tolkien"}
+ {:fortune/text "The best way to learn is to do. " :fortune/author "P.R. Halmos"}
+ {:fortune/text "If you wish to make an apple pie from scratch, you must first invent the universe. " :fortune/author "Carl Sagan"}
+ {:fortune/text "Learn the rules like a pro, so you can break them like an artist. " :fortune/author "Pablo Picasso"}
+ {:fortune/text "The only way of discovering the limits of the possible is to venture a little way past them into the impossible. " :fortune/author "Arthur C. Clarke"}
+ {:fortune/text "Don't wish it were easier. Wish you were better. " :fortune/author "Jim Rohn"}
+ {:fortune/text "One chord is fine. Two chords is pushing it. Three chords and you're into jazz. " :fortune/author "Lou Reed"}
+ {:fortune/text "We are all apprentices in a craft where no one ever becomes a master. " :fortune/author "Ernest Hemingway"}
+ {:fortune/text "A designer knows he has achieved perfection not when there is nothing left to add, but when there is nothing left to take away. " :fortune/author "Antoine de Saint-Exupery"}
+ {:fortune/text "Clojure isn't a language, it's a building material."}
+ {:fortune/text "Think big!"}
+ {:fortune/text "Think bold!"}
+ {:fortune/text "Think fun!"}
+ {:fortune/text "Code big!"}
+ {:fortune/text "Code bold!"}
+ {:fortune/text "Code fun!"}
+ {:fortune/text "Take this REPL, fellow hacker, and may it serve you well."}
+ {:fortune/text "Let the hacking commence!"}
+ {:fortune/text "Hacks and glory await!"}
+ {:fortune/text "Hack and be merry!"}
+ {:fortune/text "Your hacking starts... NOW!"}
+ {:fortune/text "May the Source be with you!"}
+ {:fortune/text "May the Source shine upon thy REPL!"}
+ {:fortune/text "Code long and prosper!"}
+ {:fortune/text "Happy hacking!"}
+ {:fortune/text "nREPL server is up, CIDER REPL is online!"}
+ {:fortune/text "CIDER REPL operational!"}
+ {:fortune/text "Your imagination is the only limit to what you can do with this REPL!"}
+ {:fortune/text "This REPL is yours to command!"}
+ {:fortune/text "Fame is but a hack away!"}
+ {:fortune/text "The REPL is not enough, but it is such a perfect place to start..."}
+ {:fortune/text "Keep on codin' in the free world!"}
+ {:fortune/text "What we do in the REPL echoes in eternity!"}
+ {:fortune/text "Evaluating is believing."}
+ {:fortune/text "To infinity... and beyond."}
+ {:fortune/text "Showtime!"}
+ {:fortune/text "Unfortunately, no one can be told what CIDER is. You have to figure this out yourself."}
+ {:fortune/text "Procure a bottle of cider to achieve optimum programming results."}
+ {:fortune/text "In parentheses we trust!"}
+ {:fortune/text "Write you some Clojure for Great Good!"}
+ {:fortune/text "Oh, what a day... what a lovely day!"}
+ {:fortune/text "What a day! What cannot be accomplished on such a splendid day!"}
+ {:fortune/text "Home is where your REPL is."}
+ {:fortune/text "The worst day programming is better than the best day working."}
+ {:fortune/text "The only thing worse than a rebel without a cause is a REPL without a clause."}
+ {:fortune/text "In the absence of parentheses, chaos prevails."}
+ {:fortune/text "One REPL to rule them all, One REPL to find them, One REPL to bring them all, and in parentheses bind them!"}
+ {:fortune/text "Scientifically-proven optimal words of hackerish encouragement."}
+ ]

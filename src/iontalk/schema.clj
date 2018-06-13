@@ -10,10 +10,13 @@
 
 (defn- data-loaded?
   [db]
-  (has-ident? db :message/body))
+  (has-ident? db :fortune/author))
 
 (def schema-1
   (read-string (slurp (io/resource "datomic/schema.edn"))))
+
+(def fortunes
+  (read-string (slurp (io/resource "datomic/fortune.edn"))))
 
 (defn load-dataset
   [conn]
@@ -23,4 +26,5 @@
       (letfn [(xact [tx-data]
                 (d/transact conn {:tx-data tx-data}))]
         (xact schema-1)
+        (xact fortunes)
         :loaded))))
