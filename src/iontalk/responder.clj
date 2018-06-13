@@ -111,4 +111,4 @@
        (str/join " -")))
 
 (defmethod respond :default [context]
-  (str "Sorry friend, my silly bot brain can't understand this big big world. Here is the context you sent me: " (pr-str context)))
+  "Sorry friend, my silly bot brain can't understand this big big world. Here is the context you sent me: ")
