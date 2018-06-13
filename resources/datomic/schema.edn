@@ -1,0 +1,43 @@
+[
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;;; Member Schema
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ {:db/ident       :member/name
+  :db/valueType   :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc         "The name for this Member"}
+
+ {:db/ident       :member/phone
+  :db/valueType   :db.type/string
+  :db/unique      :db.unique/identity
+  :db/cardinality :db.cardinality/one
+  :db/doc         "The phone number for this Member"}
+
+ {:db/ident       :member/status
+  :db/valueType   :db.type/keyword
+  :db/cardinality :db.cardinality/one
+  :db/doc         "The status for this Member"}
+
+ {:db/ident :member.status/normal}
+ {:db/ident :member.status/trusted}
+ {:db/ident :member.status/blocked}
+
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ ;; Message Schema
+ ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+ {:db/ident       :message/from
+  :db/valueType   :db.type/ref
+  :db/cardinality :db.cardinality/one
+  :db/doc         "The Member for this Message"}
+
+ {:db/ident       :message/to
+  :db/valueType   :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc         "The Number this Message was sent to"}
+
+ {:db/ident       :message/body
+  :db/valueType   :db.type/string
+  :db/cardinality :db.cardinality/one
+  :db/doc         "The body of this message"}
+
+ ]

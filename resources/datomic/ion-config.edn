@@ -1,0 +1,28 @@
+{:allow
+ [ ;; transaction functions
+
+  ;; query functions
+
+
+  ;; lambda handlers
+  iontalk.message/handler
+  
+  ;; web applications
+  iontalk.message/handler-web]
+ :lambdas
+ {:message
+  {:fn iontalk.message/handler
+   :description
+   "Creates a new message entry."}
+
+  :message-web
+  {:fn
+   iontalk.message/handler-web
+
+   :description
+   "Web handler that creates a new message entry."
+
+   :integration
+   :api-gateway/proxy}}
+           
+ :app-name "ion-talk"}
