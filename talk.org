@@ -6,3 +6,34 @@
 ** Datomic Ions Tutorial
 - https://docs.datomic.com/cloud/ions/ions-tutorial.html
 * Fortune Teller
+phone: 952-222-4898
+** Twilio
+** API Gateway
+- Ion Web Handler
+  - Follows the Ring Spec! Reuse your existing Apps!
+  - This also means its possible to use pedestal with Ions
+
+** Lambda
+- Ion Handler
+  - IMO replaces cljs-lambda
+  - Yes, JVM startup time. Its a Shim though, and is an implementation
+    detail, not a requirement
+  - Its your responsibility to adhere to the api that the calling service
+    expects. In practice this seems pretty straight forward.
+  - Integrates with any other service in the AWS cloud.
+    - Kinesis
+    - S3
+    - SQS
+    - SNS
+    - Anything that can fire a lambda function can fire an Ion. 
+** deps.edn
+** ion.dev library
+** Namespaces
+- iontalk.ion
+- iontalk.schema
+- iontalk.message
+- iontalk.responder
+** Query Functions
+** Transaction Functions
+* Post Talk
+** Demo how quick it is to set up datomic cloud

@@ -32,18 +32,6 @@
     (map (comp str/lower-case first) (re-seq hashtags-re s))))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Query Functions
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defn author-match?
-  [db e ?author]
-  (let [{:keys [:fortune/author]} (d/pull db {:eid e :selector [:fortune/author]})]
-    (= (str/lower-case author) (str/lower-case ?author))))
-
-(defn apropos?
-  [db e ?search]
-  (let [{:keys [:fortune/text]} (d/pull db {:eid e :selector [:fortune/text]})]
-    (boolean (str/includes? text ?search))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; respond multi-methods
@@ -53,32 +41,8 @@
   {:tags (set (hashtags Body))})
 
 (defmulti respond respond-dispatch)
-
-(defmethod respond {:tags #{"#apropos"}}
-  [{:strs [db Body] :as context}]
-  (->> (some-body Body)
-       (d/q
-        '[:find ?text ?author
-          :in $ ?search
-          :where
-          [?e :fortune/author ?author]
-          [?e :fortune/text ?text]
-          [(= ?apropos true)]
-          [(iontalk.responder/apropos? $ ?e ?search) ?apropos]]
-        db)
-       (map #(->> % (str/join " -")))
-       (str/join ", ")))
-
-
-(defmethod respond {:tags #{"#new-fortune"}}
-  [context]
-  (let [db (get context "db" (d/db (ion/get-connection)))]
-    (d/q
-     '[:find ?author (count ?text)
-       :where
-       [?e :fortune/author ?author]
-       [?e :fortune/text ?text]]
-     db)))
+(defmethod respond :default [context]
+  "Sorry friend, my silly bot brain can't understand this big big world.")
 
 (defmethod respond {:tags #{"#fortune"}}
   [{:strs [db] :as context}]
@@ -92,6 +56,68 @@
        shuffle
        first
        (str/join " -")))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Fortune-Teller
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defn author-match?
+  [db e ?author]
+  (let [{:keys [:fortune/author]} (d/pull db {:eid e :selector [:fortune/author]})]
+    (= (str/lower-case author) (str/lower-case ?author))))
+
 
 (defmethod respond {:tags #{"#fortune-teller"}}
   [{:strs [db Body] :as context}]
@@ -110,5 +136,96 @@
        first
        (str/join " -")))
 
-(defmethod respond :default [context]
-  "Sorry friend, my silly bot brain can't understand this big big world. Here is the context you sent me: ")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; Apropos
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
+(defn apropos?
+  [db e ?search]
+  (let [{:keys [:fortune/text]} (d/pull db {:eid e :selector [:fortune/text]})]
+    (boolean (str/includes? text ?search))))
+
+
+(defmethod respond {:tags #{"#apropos"}}
+  [{:strs [db Body] :as context}]
+  (->> (some-body Body)
+       (d/q
+        '[:find ?text ?author
+          :in $ ?search
+          :where
+          [?e :fortune/author ?author]
+          [?e :fortune/text ?text]
+          [(= ?apropos true)]
+          [(iontalk.responder/apropos? $ ?e ?search) ?apropos]]
+        db)
+       (map #(->> % (str/join " -")))
+       (str/join ", ")))
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; New Fortune
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(defmethod respond {:tags #{"#new-fortune"}}
+  [context]
+  (let [db (get context "db" (d/db (ion/get-connection)))]
+    (d/q
+     '[:find ?author (count ?text)
+       :where
+       [?e :fortune/author ?author]
+       [?e :fortune/text ?text]]
+     db)))
