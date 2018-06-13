@@ -99,7 +99,9 @@
             [?e :fortune/author ?author]
             [?e :fortune/text ?text]]
           db)
-         #(first (shuffle (vec %)))
+         vec
+         shuffle
+         first
          (str/join " -"))))
 
 (defmethod respond {:tags #{"#fortune-teller"}}
