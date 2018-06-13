@@ -33,10 +33,10 @@
       :params
       handler*))
 
-(defn- handler-web*
+(defn handler-web*
   [{:keys [params] :as req}]
   (-> (ring-resp/response
-       (handler* params))
+       (handler* (clojure.walk/keywordize-keys params)))
       (ring-resp/header "Content-Type" "text/xml; charset=utf-8")))
 
 
