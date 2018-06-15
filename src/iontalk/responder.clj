@@ -57,59 +57,6 @@
        first
        (str/join " -")))
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Fortune-Teller
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -135,53 +82,6 @@
        shuffle
        first
        (str/join " -")))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Apropos
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -208,24 +108,18 @@
        (map #(->> % (str/join " -")))
        (str/join ", ")))
 
-
-
-
-
-
-
-
-
+;; TODO Implement Me!
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; New Fortune
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(defmethod respond {:tags #{"#new-fortune"}}
-  [context]
-  (let [db (get context "db" (d/db (ion/get-connection)))]
-    (d/q
-     '[:find ?author (count ?text)
-       :where
-       [?e :fortune/author ?author]
-       [?e :fortune/text ?text]]
-     db)))
+;; (defmethod respond {:tags #{"#new-fortune"}}
+;;   [context]
+
+;;   (let [db (get context "db" (d/db (ion/get-connection)))]
+;;     (d/q
+;;      '[:find ?author (count ?text)
+;;        :where
+;;        [?e :fortune/author ?author]
+;;        [?e :fortune/text ?text]]
+;;      db)))
